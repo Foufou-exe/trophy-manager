@@ -465,7 +465,7 @@ def getDLCTropheeFromID(GameUID, id) -> dict:
           game['Terminer'] = rows[7]
           return game
 
-# Init()
+Init()
 
 # print(getAllGame())
 
