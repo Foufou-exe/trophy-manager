@@ -8,6 +8,8 @@ Project Python pour le cours de Monsieur Artz Vincent
 
 - [@thorbeorn](https://github.com/thorbeorn)
 - [@Foufou-exe](https://github.com/Foufou-exe)
+- [@nicolasLlinares](https://github.com/nicolasLlinares)
+- [@mathislef34](https://github.com/mathislef34)
 
 
 ## Installation
