@@ -20,6 +20,7 @@ Install my-project with python, pip and git
  git clone https://github.com/Foufou-exe/B3-C1-Project-Python-MAURRAS-THIBAUT-LLODRA-DYLAN-LLINARAIS-NICOLAS-LEFRANC-MATIS.git
  cd B3-C1-Project-Python-MAURRAS-THIBAUT-LLODRA-DYLAN-LLINARAIS-NICOLAS-LEFRANC-MATIS
  python3 -m pip install -r requirements.txt
+ python3 InitDB.py
 ```
     
 ## Usage/Examples
