@@ -1,0 +1,493 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #646464;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+b, strong {
+    font-weight: bolder;
+}
+
+#submit {
+    background: #0066A2;
+	color: white;
+	border-color: #0066A2;
+    border: none;
+    border-radius: 5px;
+	padding: 0.5rem;
+	font-size: 14px;
+	font: bold15px arial,sans-serif;
+	text-shadow: none;
+}
+
+#navbar {
+    background-color: #312e2d;
+    padding: 1.5rem;
+}
+
+#search {
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: all 0.4s ease-in-out;
+    font-size: 14px;
+}
+
+#search:focus {
+    width: 90%;
+    outline: none;
+}
+
+#game-header-1 {
+    background-color: #232323;
+    border-radius: 10px;
+    height: 176px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+}
+
+#game-header-1 .game-picture-container {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    border-radius: 10px 0 0 10px;
+    float: left;
+    height: 176px;
+    width: 320px;
+}
+
+#game-header-1 .game-center {
+    float: left;
+    padding: 0 30px;
+    position: relative;
+    width: 420px;
+    z-index: 2;
+}
+
+#game-header-1 .game-center h1 {
+    color: #F5F5F5;
+    font-size: 24px;
+    font-weight: bold;
+    height: 60px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1500px){
+    .content {
+        margin-left: auto !important;
+    }
+}
+
+.content {
+    margin: 55px auto 0 calc(50% - 480px);
+    min-height: calc(100vh - 55px);
+    padding: 35px 10px;
+    transition: 0.5s;
+    transition-duration: 1s;
+    width: 1100px;
+}
+.Jeux_bibliotheque_container_plus {
+    border-radius: 2px;
+    color: #F5F5F5;
+    font-family: "source sans pro";
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 16px;
+    margin-right: 5px;
+    min-width: 37px;
+    padding: 0 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-shadow: 0 0 0 transparent, 0 1px 0 black;
+    text-transform: uppercase;
+    vertical-align: middle;
+    display: inline-block;
+}
+.Jeux_bibliotheque_container_plus .PS3 {
+    background-color: #000;
+}
+.Jeux_bibliotheque_container_plus .PS4 {
+    background-color: #00A2FF;
+}
+.Jeux_bibliotheque_container_plus .VITA {
+    background-color: #100BFF;
+}
+.Jeux_bibliotheque_container_plus .PS5 {
+    background-color: #F5F5F5;
+    color: #000;
+}
+.Jeux_bibliotheque_container_plus .EXTRA {
+    background: linear-gradient(90deg, #ffe823 0%, #ffe100 50%, #ffc200 100%);
+    border: none;
+    color: #000;
+    line-height: 16px;
+    text-shadow: none;
+}
+.Jeux_bibliotheque_container_plus .VR {
+    background-color: #bee55c;
+    color: #000;
+}
+.Jeux_bibliotheque_container_plus .PI {
+    background-color: #e55c5c;
+    color: #000;
+}
+.Jeux_bibliotheque_container_plus .DLC {
+    background-color: #ff7f32;
+}
+
+#game-header-1 .game-center .game-trophies {
+    background: #121212;
+    border-radius: 7px;
+    font-size: 24px;
+    height: 33px;
+    line-height: 33px;
+    margin: 10px 0 0 0;
+    padding: 0 10px 0 0;
+    text-align: center;
+    width: 250px;
+}
+.game-trophies div {
+    background: no-repeat right center;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 33px;
+    padding: 0 30px 0 5px;
+    text-align: right;
+    width: 10%;
+    color: white;
+}
+.game-trophies div.platine {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-platinum-trophy-small.png);
+}
+.game-trophies div.gold {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-gold-trophy-small.png);
+}
+.game-trophies div.silver {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-silver-trophy-small.png);
+}
+.game-trophies div.bronze {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-bronze-trophy-small.png);
+}
+
+#game-header-1 #game-notes .test-note {
+    background: url(https://static.psthc.fr/v3/test-crown.png) no-repeat center 15px/auto 83px;
+    float: left;
+    font-size: 35px;
+    height: 90px;
+    margin-right: 30px;
+    margin-top: 33px;
+    padding-top: 0;
+    position: relative;
+    text-align: center;
+    width: 114px;
+    z-index: 2;
+    color: white;
+}
+
+#game-header-1 #game-notes .guide-note {
+    background: url(https://static.psthc.fr/v3/guide-crown.png) no-repeat center 11px/auto 90px;
+    float: left;
+    font-size: 35px;
+    height: 90px;
+    margin-right: 30px;
+    margin-top: 30px;
+    padding-top: 20px;
+    position: relative;
+    text-align: center;
+    width: 114px;
+    z-index: 2;
+    color: white;
+}
+
+#game-header-2 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.list-content.open {
+    height: auto;
+    overflow: unset;
+}
+
+.list-content.retractible-content {
+    overflow: hidden;
+    position: relative;
+}
+
+.list-content.retractible-content {
+    overflow: hidden;
+    position: relative;
+}
+
+.list-content {
+    background-color: #232323;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    position: relative;
+    transition: 3s;
+}
+
+.list-content.retractible-content h2 {
+    padding-right: 20px;
+}
+
+.list-content h2 {
+    font-size: 22px;
+    font-weight: bold;
+    border-left: 3px solid #008BFD;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    color: white;
+}
+
+#game-header-2 .center {
+    float: left;
+    padding: 0 100px;
+    text-align: center;
+    width: calc(100% - 500px);
+    color: white;
+}
+
+#game-guide {
+    font-size: 18px;
+}
+
+.horizontal-game-block {
+    border-radius: 10px;
+    border-right: 3px solid transparent;
+    color: #F5F5F5 !important;
+    display: block;
+    height: 75px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.horizontal-game-block.list-link {
+    margin: 15px 0 15px;
+    background-color: #000;
+}
+
+.horizontal-game-block .game-picture-container {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    border-radius: 10px 0 0 10px;
+    float: left;
+    height: 75px;
+    width: 136px;
+}
+
+.horizontal-game-block.list-link .game-center {
+    width: calc(100% - 137px - 450px);
+}
+
+.horizontal-game-block.game .game-center {
+    font-size: 14px;
+    padding: 10px 15px;
+}
+
+.horizontal-game-block .game-center {
+    color: #F5F5F5 !important;
+    float: left;
+    text-align: justify;
+}
+
+.game-center h3{
+    font-size: 20px;
+    height: 50px;
+    white-space: initial;
+}
+
+.horizontal-game-block.list-link .game-right {
+    width: 420px;
+}
+
+.horizontal-game-block.game .game-right {
+    float: left;
+    padding: 0;
+}
+
+.horizontal-game-block.list-link .game-right .game-trophies {
+    color: #F5F5F5 !important;
+}
+
+
+.horizontal-game-block.game .game-right .game-trophies {
+    border-radius: 10px;
+    color: #F5F5F5 !important;
+    float: left;
+    font-size: 24px;
+    line-height: 47px;
+    margin: 14px 15px 0 0;
+    padding: 0 20px;
+    text-align: center;
+    width: 275px;
+    background: #121212;
+}
+
+.horizontal-game-block.game .game-right .game-trophies div {
+    background: no-repeat right center;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 25px 0 5px;
+    text-align: right;
+    width: 13%;
+}
+
+.horizontal-game-block.game .game-right .guide-note {
+    color: #F5F5F5 !important;
+    float: left;
+    font-size: 18px;
+    height: 75px;
+    margin-right: 15px;
+    padding-top: 18px;
+    position: relative;
+    text-align: center;
+    width: 70px;
+}
+
+.horizontal-game-block.game .game-right .game-trophies div.platine {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-platinum-trophy-small.png);
+}
+.horizontal-game-block.game .game-right .game-trophies div.gold {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-gold-trophy-small.png);
+}
+.horizontal-game-block.game .game-right .game-trophies div.silver {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-silver-trophy-small.png);
+}
+.horizontal-game-block.game .game-right .game-trophies div.bronze {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-bronze-trophy-small.png);
+}
+
+#game-guide .guide_line {
+    border-radius: 10px;
+    margin: 0 0 15px 0;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    background: #363636;
+    color: white;
+}
+
+#game-guide .guide_line .guide_line_trophy {
+    float: left;
+    margin-right: 25px;
+}
+
+#game-guide .guide_line .guide_line_trophy img.trophy-image {
+    border: 3px solid transparent;
+}
+
+.content img {
+    max-width: 100%;
+}
+
+#game-guide.liste-guide .guide_line .guide_trophy {
+    min-height: 100px;
+    width: calc(100% - 300px);
+}
+
+#game-guide .guide_line .guide_trophy {
+    float: left;
+    position: relative;
+}
+
+#game-guide .guide_line .guide_trophy .corner-hide-line.corner-list {
+    right: -170px;
+}
+
+#game-guide .guide_line .guide_trophy .corner-hide-line {
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+#game-guide .guide_line .guide_trophy h4 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 13px;
+}
+
+#game-guide .guide_line .guide_trophy p.guide_trophy_description {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 5px;
+    padding-left: 2px;
+}
+
+#game-guide.liste-guide .guide_line .guide_player_count.red {
+    background: #c23e3e;
+}
+#game-guide.liste-guide .guide_line .guide_player_count.orange {
+    background: #ff7300;
+}
+#game-guide.liste-guide .guide_line .guide_player_count.yellow {
+    background: #b7c23e;
+}
+#game-guide.liste-guide .guide_line .guide_player_count.green {
+    background: #3ec254;
+}
+#game-guide.liste-guide .guide_line .guide_player_count.blue {
+    background: #2989d8;
+}
+
+#game-guide.liste-guide .guide_line .guide_player_count {
+    border-radius: 100%;
+    float: left;
+    line-height: 66px;
+    margin: 17px 10px;
+    text-align: center;
+    width: 66px;
+}
+
+#game-guide.liste-guide .guide_line .guide_trophy_type {
+    float: left;
+    margin: 17px 10px;
+    width: 62px;
+}
+
+#status-select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.disabled {
+    pointer-events: none; /* empêche les interactions de la souris avec la div */
+    opacity: 0.5; /* rend la div légèrement transparente */
+    filter: grayscale(100%); /* applique un filtre de gris */
+}
+
+.btn_menu {
+    background-color: white;
+    width: 235px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+}

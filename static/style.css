@@ -1,0 +1,177 @@
+html, body, h1{
+    margin: 0;
+    padding: 0;
+    background-color: #646464;
+}
+
+.Jeux_bibliotheque {
+    border-bottom: 3px solid transparent;
+    border-radius: 5px 5px 5px 5px;
+    color: #F5F5F5 !important;
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin: 0 10px 40px 0;
+    padding-bottom: 4px;
+    position: relative;
+    width: 200px;
+    text-decoration: none;
+}
+
+.Jeux_bibliotheque_container_plus {
+    border-radius: 2px;
+    color: #F5F5F5;
+    font-family: "source sans pro";
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 16px;
+    margin-right: 5px;
+    min-width: 37px;
+    padding: 0 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-shadow: 0 0 0 transparent, 0 1px 0 black;
+    text-transform: uppercase;
+    vertical-align: middle;
+    display: inline-block;
+}
+.Jeux_bibliotheque_container_plus .PS3 {
+    background-color: #000;
+}
+.Jeux_bibliotheque_container_plus .PS4 {
+    background-color: #00A2FF;
+}
+.Jeux_bibliotheque_container_plus .VITA {
+    background-color: #100BFF;
+}
+.Jeux_bibliotheque_container_plus .PS5 {
+    background-color: #F5F5F5;
+    color: #000;
+}
+.Jeux_bibliotheque_container_plus .EXTRA {
+    background: linear-gradient(90deg, #ffe823 0%, #ffe100 50%, #ffc200 100%);
+    border: none;
+    color: #000;
+    line-height: 16px;
+    text-shadow: none;
+}
+.Jeux_bibliotheque_container_plus .VR {
+    background-color: #bee55c;
+    color: #000;
+}
+.Jeux_bibliotheque_container_plus .PI {
+    background-color: #e55c5c;
+    color: #000;
+}
+.Jeux_bibliotheque_container_plus .DLC {
+    background-color: #ff7f32;
+}
+.Jeux_bibliotheque h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 7px 0;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.Jeux_bibliotheque_pochette {
+    background-color: #1C1C1C;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    border-radius: 5px 5px 0 0;
+    height: 110px;
+    width: 200px;
+}
+
+.Jeux_bibliotheque_pochette_trophee {
+    height: 25px;
+    padding-top: 3px;
+    text-align: right;
+    width: 100%;
+    background-color: #121212;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.Jeux_bibliotheque_pochette_trophee div {
+    background-position: right 2px;
+    background-repeat: no-repeat;
+    color: #F5F5F5;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 20px 0 5px;
+    width: 10%;
+}
+.Jeux_bibliotheque_pochette_trophee div.platine {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-platinum-trophy-small.png);
+}
+.Jeux_bibliotheque_pochette_trophee div.gold {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-gold-trophy-small.png);
+}
+.Jeux_bibliotheque_pochette_trophee div.silver {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-silver-trophy-small.png);
+}
+.Jeux_bibliotheque_pochette_trophee div.bronze {
+    background-image: url(https://static.psthc.fr/trophees_ps5/2020-bronze-trophy-small.png);
+}
+
+
+
+#bibliotheque_container {
+    width: 100%;
+}
+#bibliotheque_container h1{
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#bibliotheque_container #bibliotheque {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+#navbar {
+    background-color: #312e2d;
+    padding: 1.5rem;
+}
+
+#search {
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: all 0.4s ease-in-out;
+    font-size: 14px;
+}
+
+#search:focus {
+    width: 90%;
+    outline: none;
+}
+
+p {
+    text-align: center;
+    margin: 2rem auto;
+    font-size: 62px;
+    font-weight: bold;
+}
+
+#submit {
+    background: #0066A2;
+	color: white;
+	border-color: #0066A2;
+    border: none;
+    border-radius: 5px;
+	padding: 0.5rem;
+	font-size: 14px;
+	font: bold15px arial,sans-serif;
+	text-shadow: none;
+}

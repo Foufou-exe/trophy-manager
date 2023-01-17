@@ -1,0 +1,64 @@
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header>
+            <nav id="navbar">
+                <form method="POST">
+                    <input type="text" name="search" id="search" placeholder="Cherche un jeu ici...">
+                    <input type="submit" name="submit" id="submit" value="Rechercher">
+                </form>
+            </nav>
+        </header>
+        <div id="bibliotheque_container">
+            <h1>Les jeux recherchées</h1>
+            <div id="bibliotheque">
+                {% for game in gamesearch %}
+                <a class="Jeux_bibliotheque" href="/add?add={{game['URL']}}">
+                    <div class="Jeux_bibliotheque_pochette" style="background-image: url('{{game['pochette']}}')"></div>
+                    <div class="Jeux_bibliotheque_pochette_trophee">
+                        <div class="platine">{{game['TropheePlatine']}}</div>
+                        <div class="gold">{{game['TropheeGold']}}</div>
+                        <div class="silver">{{game['TropheeSilver']}}</div>
+                        <div class="bronze">{{game['TropheeBronze']}}</div>
+                    </div>
+                    <h4>{{game['titre']}}</h4>
+                    <div class="Jeux_bibliotheque_container_plus">
+                        {% for console in game["console"].split(",") %}
+                        {% if console == "ps4" or console == " ps4" %}
+                        <div class="Jeux_bibliotheque_container_plus PS4">PS4</div>
+                        {% endif %}
+                        {% if console == "ps3" or console == " ps3" %}
+                        <div class="Jeux_bibliotheque_container_plus PS3">PS3</div>
+                        {% endif %}
+                        {% if console == "vita" or console == " vita" %}
+                        <div class="Jeux_bibliotheque_container_plus VITA">VITA</div>
+                        {% endif %}
+                        {% if console == "ps5" or console == " ps5" %}
+                        <div class="Jeux_bibliotheque_container_plus PS5">PS5</div>
+                        {% endif %}
+                        {% endfor %}
+                        {% if game['Extra'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus EXTRA">EXTRA</div>
+                        {% endif %}
+                        {% if game['VR'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus VR">VR</div>
+                        {% endif %}
+                        {% if game['PlatinePossible'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus PI">PI</div>
+                        {% endif %}
+                        {% if game['DLC'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus DLC">{{game['DLC']}} DLC</div>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

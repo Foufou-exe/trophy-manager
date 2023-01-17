@@ -1,0 +1,366 @@
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='show.css') }}">
+    </head>
+    <body>
+        <header>
+            <nav id="navbar">
+                <form method="POST">
+                    <input type="text" name="search" id="search" placeholder="Cherche un jeu ici...">
+                    <input type="submit" name="submit" id="submit" value="Rechercher">
+                </form>
+            </nav>
+        </header>
+        <div class="content">
+            <div id="game-header-1">
+                <div class="game-picture-container" style="background-image: url('{{game['Pochette']}}')"></div>
+                <div class="game-center">
+                    <h1>{{game['Titre']}}</h1>
+                    <div class="Jeux_bibliotheque_container_plus">
+                        {% for console in game["Console"].split(",") %}
+                        {% if console == "ps4" or console == " ps4" %}
+                        <div class="Jeux_bibliotheque_container_plus PS4">PS4</div>
+                        {% endif %}
+                        {% if console == "ps3" or console == " ps3" %}
+                        <div class="Jeux_bibliotheque_container_plus PS3">PS3</div>
+                        {% endif %}
+                        {% if console == "vita" or console == " vita" %}
+                        <div class="Jeux_bibliotheque_container_plus VITA">VITA</div>
+                        {% endif %}
+                        {% if console == "ps5" or console == " ps5" %}
+                        <div class="Jeux_bibliotheque_container_plus PS5">PS5</div>
+                        {% endif %}
+                        {% endfor %}
+                        {% if game['Extra'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus EXTRA">EXTRA</div>
+                        {% endif %}
+                        {% if game['VR'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus VR">VR</div>
+                        {% endif %}
+                        {% if game['PlatinePossible'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus PI">PI</div>
+                        {% endif %}
+                        {% if game['DLC'] > 0 %}
+                        <div class="Jeux_bibliotheque_container_plus DLC">{{game['DLC']}} DLC</div>
+                        {% endif %}
+                    </div> <br>
+                    <div class="game-trophies">
+                        <div class="platine">{{game['TropheePlatine']}}</div>
+                        <div class="gold">{{game['TropheeGold']}}</div>
+                        <div class="silver">{{game['TropheeSilver']}}</div>
+                        <div class="bronze">{{game['TropheeBronze']}}</div>
+                    </div>
+                </div>
+                <div id="game-notes">
+                    <div class="test-note">{{game['NoteJeu']}}</div>
+                    <div class="guide-note">4</div>
+                </div>
+                <div class="clearer"></div>
+            </div>
+            <div id="game-header-2" class="list-content retractible-content open">
+                <h2>Infos complémentaires</h2>
+                <div class="left"></div>
+                <div class="right">
+                    <label for="status-select">Filtrer par status :</label>
+                    <select id="status-select" name="status">
+                        {% if affichage == 2 %}
+                        <option selected value="all">Tous affiché</option>
+                        <option value="completed">Terminé</option>
+                        <option value="not_completed">Non terminé</option>
+                        {% endif %}
+                        {% if affichage == 1 %}
+                        <option value="all">Tous affiché</option>
+                        <option selected value="completed">Terminé</option>
+                        <option value="not_completed">Non terminé</option>
+                        {% endif %}
+                        {% if affichage == 0 %}
+                        <option value="all">Tous affiché</option>
+                        <option value="completed">Terminé</option>
+                        <option selected value="not_completed">Non terminé</option>
+                        {% endif %}
+                    </select>
+                    <button class="btn_menu" id="btn_menu_principal" type="button" onclick="btn_menu_principale()">Retour au menu principale</button>
+                    <button class="btn_menu" id="btn_supprimer_jeu" type="button" onclick="btn_supprimer_jeu({{game['GameUID']}})">Supprimer le jeu</button>
+                </div>
+                <div class="center">
+                    Date de sortie : {{game['DateSortie']}}<br>
+                    Genre(s) : {{game['Genre']}}<br>
+                    Territoire(s) : {{game['Territoire']}}<br><br>
+                    <div id="game-total-trophies">{{game['nbrTropheeTotal']}} trophées au total</div>
+                    <div id="game-total-online">{{game['nbrTropheeOnline']}} trophée online</div>
+                    <div id="game-total-hidden">{{game['nbrTropheeCacher']}} trophées cachés</div>
+                    {% if game['DLC'] > 0 %}
+                    <div id="game-total-dlc">{{game['DLC']}} DLC</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="list-content">
+                <div id="game-guide" class="liste-guide">
+                    <div class="horizontal-game-block game list-link">
+                        <div class="game-picture-container" style="background-image: url('{{game['Pochette']}}')"></div>
+                        <div class="game-center">
+                            <h3>{{game['Titre']}}</h3>
+                        </div>
+                        <div class="game-right">
+                            <div class="game-trophies">
+                                <div class="platine">{{game["Trophee"]["main"]["nbr"]['TropheePlatine']}}</div>
+                                <div class="gold">{{game["Trophee"]["main"]["nbr"]['TropheeGold']}}</div>
+                                <div class="silver">{{game["Trophee"]["main"]["nbr"]['TropheeSilver']}}</div>
+                                <div class="bronze">{{game["Trophee"]["main"]["nbr"]['TropheeBronze']}}</div>
+                                <div class="clearer"></div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                    </div>
+                    <div id="guide-main-content-0" class="guide-main-content">
+                        {% for tropheemain in game["Trophee"]["main"]["data"] %}
+                        {% if str(tropheemain["Terminer"]) == str(affichage) or ((str(affichage) == str(1)) and str(tropheemain["Terminer"]) == "true")%}
+                        <div class="guide_line">
+                            <div class="guide_line_trophy">
+                                <img class="trophy-image  icon_tooltip_top" src="{{tropheemain['Image']}}" width="100px">
+                            </div>
+                            <div class="guide_trophy">
+                                <div class="corner-hide-line corner-list" onclick="crois({{tropheemain['GameUID']}}, {{tropheemain['id']}})">x</div>
+                                <h4>{{tropheemain['Nom']}}</h4>
+                                <p class="guide_trophy_description">{{tropheemain['Description']}}</p>
+                            </div>
+
+                            {% if tropheemain['Pourcentage'] <= 100 and tropheemain['Pourcentage'] >= 80 %}
+                            <div class="guide_player_count blue"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 80  and tropheemain['Pourcentage'] >= 60 %}
+                            <div class="guide_player_count green"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 60  and tropheemain['Pourcentage'] >= 40 %}
+                            <div class="guide_player_count yellow"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 40  and tropheemain['Pourcentage'] >= 20 %}
+                            <div class="guide_player_count orange"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 20 and tropheemain['Pourcentage'] >= 0 %}
+                            <div class="guide_player_count red"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+
+                            <div class="guide_trophy_type">
+                                {% if tropheemain['Trophee'] == "platine" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-platinum-trophy-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "gold" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-gold-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "argent" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-silver-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "bronze" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-bronze-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if affichage == 2 %}
+                        {% if str(tropheemain["Terminer"]) == "true" %}
+                        <div class="guide_line disabled">
+                        {% endif %}
+                        {% if str(tropheemain["Terminer"]) != "true" %}
+                        <div class="guide_line">
+                        {% endif %}
+                            <div class="guide_line_trophy">
+                                <img class="trophy-image  icon_tooltip_top" src="{{tropheemain['Image']}}" width="100px">
+                            </div>
+                            <div class="guide_trophy">
+                                <div class="corner-hide-line corner-list" onclick="crois({{tropheemain['GameUID']}}, {{tropheemain['id']}})">x</div>
+                                <h4>{{tropheemain['Nom']}}</h4>
+                                <p class="guide_trophy_description">{{tropheemain['Description']}}</p>
+                            </div>
+
+                            {% if tropheemain['Pourcentage'] <= 100 and tropheemain['Pourcentage'] >= 80 %}
+                            <div class="guide_player_count blue"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 80  and tropheemain['Pourcentage'] >= 60 %}
+                            <div class="guide_player_count green"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 60  and tropheemain['Pourcentage'] >= 40 %}
+                            <div class="guide_player_count yellow"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 40  and tropheemain['Pourcentage'] >= 20 %}
+                            <div class="guide_player_count orange"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 20 and tropheemain['Pourcentage'] >= 0 %}
+                            <div class="guide_player_count red"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+
+                            <div class="guide_trophy_type">
+                                {% if tropheemain['Trophee'] == "platine" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-platinum-trophy-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "gold" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-gold-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "argent" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-silver-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "bronze" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-bronze-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% if game['DLC'] > 0 %}
+                    {% for i in range(game['DLC']) %}
+                    <div class="horizontal-game-block game list-link">
+                        <div class="game-picture-container" style="background-image: url('{{game['Pochette']}}')"></div>
+                        <div class="game-center">
+                            <h3>{{game['Titre']}}, DLC{{i+1}}</h3>
+                        </div>
+                        <div class="game-right">
+                            <div class="game-trophies">
+                                <div class="platine">{{game["Trophee"]["DLC"+str(i+1)]["nbr"]['TropheePlatine']}}</div>
+                                <div class="gold">{{game["Trophee"]["DLC"+str(i+1)]["nbr"]['TropheeGold']}}</div>
+                                <div class="silver">{{game["Trophee"]["DLC"+str(i+1)]["nbr"]['TropheeSilver']}}</div>
+                                <div class="bronze">{{game["Trophee"]["DLC"+str(i+1)]["nbr"]['TropheeBronze']}}</div>
+                                <div class="clearer"></div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                    </div>
+                    <div id="guide-main-content-{{i+1}}" class="guide-main-content">
+                        {% for tropheemain in game["Trophee"]["DLC"+str(i+1)]["data"] %}
+                        {% if str(tropheemain["Terminer"]) == str(affichage) or ((str(affichage) == str(1)) and str(tropheemain["Terminer"]) == "true")%}
+                        <div class="guide_line">
+                            <div class="guide_line_trophy">
+                                <img class="trophy-image  icon_tooltip_top" src="{{tropheemain['Image']}}" width="100px">
+                            </div>
+                            <div class="guide_trophy">
+                                <div class="corner-hide-line corner-list" onclick="crois({{tropheemain['GameUID']}}, {{tropheemain['id']}})">x</div>
+                                <h4>{{tropheemain['Nom']}}</h4>
+                                <p class="guide_trophy_description">{{tropheemain['Description']}}</p>
+                            </div>
+
+                            {% if tropheemain['Pourcentage'] <= 100 and tropheemain['Pourcentage'] >= 80 %}
+                            <div class="guide_player_count blue"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 80  and tropheemain['Pourcentage'] >= 60 %}
+                            <div class="guide_player_count green"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 60  and tropheemain['Pourcentage'] >= 40 %}
+                            <div class="guide_player_count yellow"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 40  and tropheemain['Pourcentage'] >= 20 %}
+                            <div class="guide_player_count orange"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 20 and tropheemain['Pourcentage'] >= 0 %}
+                            <div class="guide_player_count red"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+
+                            <div class="guide_trophy_type">
+                                {% if tropheemain['Trophee'] == "platine" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-platinum-trophy-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "gold" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-gold-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "argent" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-silver-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "bronze" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-bronze-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if affichage == 2 %}
+                        {% if str(tropheemain["Terminer"]) == "true" %}
+                        <div class="guide_line disabled">
+                        {% endif %}
+                        {% if str(tropheemain["Terminer"]) != "true" %}
+                        <div class="guide_line">
+                        {% endif %}
+                            <div class="guide_line_trophy">
+                                <img class="trophy-image  icon_tooltip_top" src="{{tropheemain['Image']}}" width="100px">
+                            </div>
+                            <div class="guide_trophy">
+                                <div class="corner-hide-line corner-list" onclick="crois({{tropheemain['GameUID']}}, {{tropheemain['id']}})">x</div>
+                                <h4>{{tropheemain['Nom']}}</h4>
+                                <p class="guide_trophy_description">{{tropheemain['Description']}}</p>
+                            </div>
+
+                            {% if tropheemain['Pourcentage'] <= 100 and tropheemain['Pourcentage'] >= 80 %}
+                            <div class="guide_player_count blue"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 80  and tropheemain['Pourcentage'] >= 60 %}
+                            <div class="guide_player_count green"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 60  and tropheemain['Pourcentage'] >= 40 %}
+                            <div class="guide_player_count yellow"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 40  and tropheemain['Pourcentage'] >= 20 %}
+                            <div class="guide_player_count orange"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+                            {% if tropheemain['Pourcentage'] < 20 and tropheemain['Pourcentage'] >= 0 %}
+                            <div class="guide_player_count red"><strong>{{tropheemain['Pourcentage']}}</strong>%</div>
+                            {% endif %}
+
+                            <div class="guide_trophy_type">
+                                {% if tropheemain['Trophee'] == "platine" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-platinum-trophy-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "gold" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-gold-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "argent" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-silver-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                                {% if tropheemain['Trophee'] == "bronze" %}
+                                <img src="https://static.psthc.fr/trophees_ps5/2020-bronze-trophy-hidden-medium.png" class="icon_tooltip_top">
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            document.getElementById("status-select").addEventListener("change", function() {
+                var selectedIndex = this.selectedIndex;
+                var selectedValue = this.options[selectedIndex].value;
+                if (selectedValue == "all") {
+                    window.location.replace("/show?GameUID={{game["GameUID"]}}&affichage=2"); 
+                }else if (selectedValue == "completed") {
+                    window.location.replace("/show?GameUID={{game["GameUID"]}}&affichage=1"); 
+                }else {
+                    window.location.replace("/show?GameUID={{game["GameUID"]}}&affichage=0"); 
+                }
+            });
+
+            function crois(game, id) {
+                var selectedIndex = document.getElementById("status-select").selectedIndex;
+                var selectedValue = document.getElementById("status-select").options[selectedIndex].value;
+                if (selectedValue == "all") {
+                    window.location.replace("/update?GameUID=" + game + "&affichage=2&update=" + id); 
+                }else if (selectedValue == "completed") {
+                    window.location.replace("/update?GameUID={{game["GameUID"]}}&affichage=1&update=" + id); 
+                }else {
+                    window.location.replace("/update?GameUID={{game["GameUID"]}}&affichage=0&update=" + id); 
+                }
+            }
+
+            function btn_menu_principale() {
+                window.location.replace("/");
+            }
+
+            function btn_supprimer_jeu(gameuid) {
+                window.location.replace("/remove?GameUID={{game["GameUID"]}}");
+            }
+        </script>
+    </body>
+</html>
