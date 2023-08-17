@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from manager import *
+import subprocess
 
 app = Flask(__name__, template_folder="web")
 
@@ -84,5 +85,7 @@ def showGame():
         return render_template("returnMainMenu.html")
 
 
+
 if __name__ == "__main__":
+    subprocess.call(["python", "InitDB.py"])
     app.run(host="0.0.0.0", port=5600)
